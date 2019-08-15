@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- TODO: quote component -->
-        <p>{{text}}</p>
+        <p><strong>{{text}}</strong></p>
         <p>Submitted by {{creator}}</p>
     </div>
 </template>

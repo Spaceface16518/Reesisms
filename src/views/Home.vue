@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <!-- TODO: get rid of bullet in display list -->
-        <p v-if="loading">Loading quotes...</p>
-        <ul>
+        <p v-if="status">{{status}}</p>
+        <ul v-else>
             <li v-bind:key="q._id.toString()" v-for="q in quotes">
                 <DisplayContainer v-bind:creator="q.creator" v-bind:id="q._id"
                                   v-bind:quote="q.quote"></DisplayContainer>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import {db} from "@/db";
+    import {db, login} from "@/db";
     import DisplayContainer from "@/components/DisplayContainer";
 
     export default {
@@ -20,7 +20,7 @@
         components: {DisplayContainer},
         data() {
             return {
-                loading: true,
+                status: null,
                 quotes: undefined
             }
         },
@@ -28,15 +28,17 @@
             "$route": "fetchData"
         },
         async created() {
-            this.loading = true;
+            this.status = "Loading quotes...";
             await this.fetchData();
-            this.loading = false;
+            this.status = null;
         },
         methods: {
-            fetchData() {
+            async fetchData() {
+                await login();
                 return db.collection("quotes").find({}).asArray().then(quoteArray => {
                     this.quotes = quoteArray;
                 }).catch(err => {
+                    this.status = "There was an error loading the quotes. Refresh the page to try again.";
                     // eslint-disable-next-line no-console
                     console.error(err);
                 })
@@ -46,4 +48,24 @@
 </script>
 
 <style scoped>
+    ul {
+        list-style: none;
+        padding-inline-start: 0;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        align-content: space-around;
+    }
+
+    li {
+        flex-grow: 1;
+        border: #2c3e50 solid;
+        border-radius: 0.3em;
+        margin: 1em;
+    }
+
+    .home {
+        position: center;
+    }
 </style>
