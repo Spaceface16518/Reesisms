@@ -28,7 +28,7 @@
         justify-content: center;
         border: 0.5em dimgrey;
         border-radius: 0.05em;
-        position: relative;
+        position: static;
         display: inline-block;
         padding: 0.3em;
     }

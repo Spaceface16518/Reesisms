@@ -22,7 +22,9 @@
         position: relative;
         display: inline-block;
         padding: 2em;
-        /*margin: 1em;*/
+        border: #2c3e50 solid;
+        border-radius: 0.3em;
+        margin: 1em;
     }
 
     .report-flag {
