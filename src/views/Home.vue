@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <!-- TODO: get rid of bullet in display list -->
-        <p v-if="loading">Loading quotes...</p>
-        <ul>
+        <p v-if="status">{{status}}</p>
+        <ul v-else>
             <li v-bind:key="q._id.toString()" v-for="q in quotes">
                 <DisplayContainer v-bind:creator="q.creator" v-bind:id="q._id"
                                   v-bind:quote="q.quote"></DisplayContainer>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import {db} from "@/db";
+    import {db, login} from "@/db";
     import DisplayContainer from "@/components/DisplayContainer";
 
     export default {
@@ -20,7 +20,7 @@
         components: {DisplayContainer},
         data() {
             return {
-                loading: true,
+                status: null,
                 quotes: undefined
             }
         },
@@ -28,15 +28,18 @@
             "$route": "fetchData"
         },
         async created() {
-            this.loading = true;
+            this.status = "Loading quotes...";
             await this.fetchData();
-            this.loading = false;
+            this.status = null;
         },
         methods: {
-            fetchData() {
+            async fetchData() {
+                // FIXME: query sometimes attempted before login for some reason
+                await login();
                 return db.collection("quotes").find({}).asArray().then(quoteArray => {
                     this.quotes = quoteArray;
                 }).catch(err => {
+                    this.status = "There was an error loading the quotes. Refresh the page to try again.";
                     // eslint-disable-next-line no-console
                     console.error(err);
                 })
