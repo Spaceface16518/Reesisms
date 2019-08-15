@@ -1,15 +1,12 @@
 <template>
-    <div class="box" v-bind:class="{clicked: this.clicked}" v-on:click="clicked = true">
+    <div class="box" v-on:mouseleave="hover = false" v-on:mouseover="hover = true">
         <!-- TODO: box for report flag -->
         <!-- TODO: more info on hover -->
-        <div v-if="clicked">Reported</div>
-        <div v-else>Report</div>
+        <div v-show="hover">Report</div>
 
         <!-- TODO: use PNGs here? -->
         <!-- TODO: more image attributes -->
-        <img alt="Success" decoding="async" src="../assets/check-mark.svg" v-if="clicked">
-        <img alt="Red flag" decoding="async" src="../assets/red-flag.svg"
-             v-else>
+        <img alt="Red flag" decoding="async" src="../assets/red-flag.svg">
     </div>
 </template>
 
@@ -18,7 +15,7 @@
         name: "ReportFlag",
         data() {
             return {
-                clicked: false
+                hover: false
             }
         }
     }
@@ -29,12 +26,16 @@
         background-color: inherit;
         color: inherit;
         justify-content: center;
-        border: 0.1em dimgrey;
+        border: 0.5em dimgrey;
         border-radius: 0.05em;
+        position: relative;
+        display: inline-block;
+        padding: 0.3em;
     }
 
-    .box > div {
-        padding: 0.3em;
+    .box > * {
+        display: inline-block;
+        padding: 0.1em;
     }
 
     .box:hover {
@@ -42,15 +43,8 @@
         color: white;
     }
 
-    /*noinspection CssUnusedSymbol*/
-    .clicked {
-        background-color: dimgrey !important;
-        color: white !important;
-    }
-
     img {
         width: 1em;
         height: 1em;
-        display: inline;
     }
 </style>

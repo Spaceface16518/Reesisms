@@ -48,4 +48,24 @@
 </script>
 
 <style scoped>
+    ul {
+        list-style: none;
+        padding-inline-start: 0;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        align-content: space-around;
+    }
+
+    li {
+        flex-grow: 1;
+        border: #2c3e50 solid;
+        border-radius: 0.3em;
+        margin: 1em;
+    }
+
+    .home {
+        position: center;
+    }
 </style>
