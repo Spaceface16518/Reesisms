@@ -34,7 +34,6 @@
         },
         methods: {
             async fetchData() {
-                // FIXME: query sometimes attempted before login for some reason
                 await login();
                 return db.collection("quotes").find({}).asArray().then(quoteArray => {
                     this.quotes = quoteArray;
