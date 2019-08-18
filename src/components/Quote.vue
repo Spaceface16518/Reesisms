@@ -2,14 +2,13 @@
     <div>
         <!-- TODO: quote component -->
         <p><strong>{{text}}</strong></p>
-        <p>Submitted by {{creator}}</p>
     </div>
 </template>
 
 <script>
     export default {
         name: "Quote",
-        props: ["text", "creator"]
+        props: ["text"]
     }
 </script>
 

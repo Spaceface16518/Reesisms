@@ -1,19 +1,27 @@
 <template>
     <div class="display-container" v-bind:id="this.id">
-        <Quote v-bind:creator="creator" v-bind:text="quote"></Quote>
-        <ReportFlag class="report-flag" v-on:click="$emit('report', this.id)"></ReportFlag>
+        <Quote v-bind:text="quote"></Quote>
+        <router-link v-bind:to="'/details/' + this.id">
+            <DetailsButton class="details-button" v-if="owner === me"></DetailsButton>
+        </router-link>
         <!-- TODO: route to report page instead of emitting event or something -->
     </div>
 </template>
 
 <script>
     import Quote from '@/components/Quote';
-    import ReportFlag from "@/components/ReportFlag";
+    import DetailsButton from "@/components/DetailsButton";
+    import {client} from '@/db';
 
     export default {
         name: "DisplayContainer",
-        components: {Quote, ReportFlag},
-        props: ["quote", "id", "creator"]
+        components: {Quote, DetailsButton},
+        props: ["quote", "id", "owner"],
+        data() {
+            return {
+                me: client.auth.user.id
+            }
+        }
     }
 </script>
 
@@ -27,7 +35,7 @@
         margin: 1em;
     }
 
-    .report-flag {
+    .details-button {
         position: absolute;
         top: 0;
         right: 0;
