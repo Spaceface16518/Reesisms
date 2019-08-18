@@ -38,7 +38,6 @@
                 event.preventDefault();
 
                 // Send data to database
-                // TODO: extract this into a cloud function?
                 await login();
                 await db.collection("quotes").insertOne({
                     quote: this.quote,
