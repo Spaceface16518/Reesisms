@@ -1,6 +1,5 @@
 <template>
     <div class="home">
-        <!-- TODO: get rid of bullet in display list -->
         <p v-if="status">{{status}}</p>
         <ul v-else>
             <li v-bind:key="q._id.toString()" v-for="q in quotes">

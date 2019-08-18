@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- TODO: quote component -->
         <p><strong>{{text}}</strong></p>
     </div>
 </template>

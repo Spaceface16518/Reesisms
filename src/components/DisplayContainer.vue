@@ -4,7 +4,6 @@
         <router-link v-bind:to="'/details/' + this.id">
             <DetailsButton class="details-button" v-if="owner === me"></DetailsButton>
         </router-link>
-        <!-- TODO: route to report page instead of emitting event or something -->
     </div>
 </template>
 
