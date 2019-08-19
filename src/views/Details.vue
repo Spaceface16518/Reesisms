@@ -54,9 +54,13 @@
                 // Send data to database
                 await login();
                 await db.collection("quotes").updateOne({
-                    _id: this.$route.params.id,
+                    _id: new BSON.ObjectId(this.$route.params.id),
                     owner_id: this.owner
-                }, {quote: this.quote}).then(() => {
+                }, {
+                    $set: {
+                        quote: this.quote
+                    }
+                }).then(() => {
                     this.$router.push("/");
                     // eslint-disable-next-line no-console
                 }).catch(err => console.error(err));
