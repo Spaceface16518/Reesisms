@@ -1,5 +1,4 @@
-import {RemoteMongoClient, Stitch} from 'mongodb-stitch-browser-sdk'
-import {AnonymousCredential} from "mongodb-stitch-core-sdk";
+import {AnonymousCredential, RemoteMongoClient, Stitch} from 'mongodb-stitch-browser-sdk'
 
 export const client = Stitch.initializeDefaultAppClient('reesisms-ghvec');
 

@@ -1,10 +1,9 @@
 <template>
     <div class="home">
-        <!-- TODO: get rid of bullet in display list -->
         <p v-if="status">{{status}}</p>
         <ul v-else>
             <li v-bind:key="q._id.toString()" v-for="q in quotes">
-                <DisplayContainer v-bind:creator="q.creator" v-bind:id="q._id"
+                <DisplayContainer v-bind:id="q._id" v-bind:owner="q.owner_id"
                                   v-bind:quote="q.quote"></DisplayContainer>
             </li>
         </ul>
