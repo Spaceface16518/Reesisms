@@ -9,6 +9,7 @@
                 <label>Quote: <input required type="text" v-model="quote"></label>
                 <input type="submit" value="Update">
             </form>
+            <p @click="deleteHandler">Delete this quote</p>
         </div>
 
         <DisplayContainer v-bind:id="this.$route.params.id" v-bind:owner="owner"
@@ -64,6 +65,18 @@
                     this.$router.push("/");
                     // eslint-disable-next-line no-console
                 }).catch(err => console.error(err));
+            },
+            async deleteHandler(event) {
+                event.preventDefault();
+
+                await login();
+                if (confirm("Are you sure you want to delete this?")) {
+                    await db.collection("quotes").deleteOne({
+                        _id: new BSON.ObjectId(this.$route.params.id),
+                        owner_id: this.owner
+                    });
+                    await this.$router.push('/');
+                }
             }
         }
     }
