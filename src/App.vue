@@ -3,7 +3,6 @@
         <nav>
             <router-link to="/">Home</router-link>
             <router-link to="/submit">Submit A Quote</router-link>
-            <router-link to="/credits">Credits</router-link>
         </nav>
         <router-view></router-view>
     </div>
