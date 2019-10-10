@@ -23,9 +23,6 @@
                 quotes: undefined
             }
         },
-        watch: {
-            "$route": "fetchData"
-        },
         async created() {
             this.status = "Loading quotes...";
             await this.fetchData();
