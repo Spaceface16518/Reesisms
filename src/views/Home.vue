@@ -23,9 +23,6 @@
                 quotes: undefined
             }
         },
-        watch: {
-            "$route": "fetchData"
-        },
         async created() {
             this.status = "Loading quotes...";
             await this.fetchData();
@@ -35,7 +32,7 @@
             async fetchData() {
                 await login();
                 return db.collection("quotes").find({}).asArray().then(quoteArray => {
-                    this.quotes = quoteArray;
+                    this.quotes = quoteArray.reverse();
                 }).catch(err => {
                     this.status = "There was an error loading the quotes. Refresh the page to try again.";
                     // eslint-disable-next-line no-console
