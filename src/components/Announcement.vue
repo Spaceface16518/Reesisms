@@ -1,6 +1,6 @@
 <template>
-    <div>
-			<p class="short" @click="showDesc = !showDesc"><strong>{{ short }}</strong></p>
+    <div @click="showDesc = !showDesc">
+			<p class="short"><strong>{{ short }}</strong></p>
 				<p v-show="showDesc" class="long" aria-hidden="false">{{ long }}</p>
     </div>
 </template>
