@@ -1,8 +1,8 @@
 import Home from "@/views/Home";
-import Credits from "@/views/Credits";
-import Submit from "@/views/Submit";
-import Details from "@/views/Details";
-// TODO: lazy/split loading
+
+const Credits = () => import("@/views/Credits");
+const Submit = () => import("@/views/Submit");
+const Details = () => import("@/views/Details");
 
 export default [
     {path: "/", name: "home", component: Home},
