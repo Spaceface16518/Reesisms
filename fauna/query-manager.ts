@@ -5,7 +5,7 @@ class QueryManager {
 	private client: Client;
 
 	constructor(token?: string) {
-		const bootstrap = token || process.env.ANON_TOKEN;
+		const bootstrap = token || process.env.ANON_KEY;
 		if (!bootstrap) {
 			throw new Error("No bootstrap token found");
 		}
