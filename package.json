@@ -12,12 +12,9 @@
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.1",
-    "@nuxtjs/apollo": "^4.0.1-rc.5",
     "core-js": "^3.8.3",
     "faunadb": "^4.0.3",
-    "nuxt": "^2.14.12",
-    "vue-cookieconsent-component": "^1.2.0",
-    "vue-if-bot": "^1.2.0"
+    "nuxt": "^2.14.12"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.12",
