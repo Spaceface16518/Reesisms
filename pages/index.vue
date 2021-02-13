@@ -2,7 +2,7 @@
 	<div class="container">
 		<aside class="quotes-preview">
 			<div>
-				<div v-for="quote in quotes" :key="quote.id">
+				<div v-for="quote in $data.quotes" :key="quote.id">
 					<Quote
 						:id="quote.id"
 						:author="quote.author"
@@ -72,9 +72,5 @@ h2 {
 	color: #526488;
 	word-spacing: 5px;
 	padding-bottom: 15px;
-}
-
-.links {
-	padding-top: 15px;
 }
 </style>
