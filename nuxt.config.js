@@ -1,4 +1,5 @@
 export default {
+	target: "static",
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		title: "Reesisms",
@@ -33,19 +34,8 @@ export default {
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: ["@nuxtjs/axios"],
+	modules: [],
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
-
-	publicRuntimeConfig: {
-		axios: {
-			baseURL:
-				process.env.NODE_ENV === "production"
-					? process.env.BASE_URL ||
-					  process.env.VERCEL_URL ||
-					  "http://localhost:3000/"
-					: "http://localhost:3000/",
-		},
-	},
 };
