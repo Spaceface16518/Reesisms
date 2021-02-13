@@ -1,17 +1,13 @@
 import { Client, query as q } from "faunadb";
 
-class QueryManager {
+export class QueryManager {
 	private readonly bootstrapToken: string;
 	private client: Client;
 
-	constructor(token?: string) {
-		const bootstrap = token || process.env.ANON_KEY;
-		if (!bootstrap) {
-			throw new Error("No bootstrap token found");
-		}
-		this.bootstrapToken = bootstrap;
+	constructor(token: string) {
+		this.bootstrapToken = token;
 		this.client = new Client({
-			secret: token || this.bootstrapToken,
+			secret: this.bootstrapToken,
 		});
 	}
 
@@ -32,6 +28,7 @@ class QueryManager {
 		return this.client.query(query);
 	}
 
+	// TODO: update token on login
 	public login(name: string, password: string) {
 		const query = q.Call(q.Function("login_user"), name, password);
 		return this.client.query(query);
@@ -55,6 +52,24 @@ class QueryManager {
 	// TODO: updateUser
 }
 
-const db = new QueryManager();
+export class QueryManagerSingleton {
+	private instance?: QueryManager;
 
-export { db, QueryManager };
+	private initialize(token: string) {
+		this.instance = new QueryManager(token);
+	}
+
+	public getInstance(bootstrapToken?: string) {
+		if (this.instance === undefined) {
+			if (!bootstrapToken) {
+				throw new Error(
+					"must provide bootstrap token to initialize query manager",
+				);
+			}
+			this.initialize(bootstrapToken);
+		}
+		return this.instance;
+	}
+}
+
+export const queryManager = new QueryManagerSingleton();

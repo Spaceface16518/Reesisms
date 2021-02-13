@@ -30,7 +30,7 @@
 </template>
 
 <script lang="js">
-import { db } from "@/fauna/query-manager";
+import { queryManager } from "@/fauna/query-manager";
 
 export default {
 	data() {
@@ -39,6 +39,7 @@ export default {
 		};
 	},
 	async fetch() {
+		const db = queryManager.getInstance(this.$config.bootstrapToken);
 		const results = await db.getAllQuotes(5);
 		this.quotes = results.data;
 	},
