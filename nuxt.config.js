@@ -31,6 +31,7 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/typescript
 		"@nuxt/typescript-build",
+		"@nuxtjs/fontawesome",
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -41,5 +42,11 @@ export default {
 
 	publicRuntimeConfig: {
 		bootstrapToken: process.env.ANON_KEY,
+	},
+
+	fontawesome: {
+		icons: {
+			solid: ["faBookmark", "faInfo", "faHeart"],
+		},
 	},
 };

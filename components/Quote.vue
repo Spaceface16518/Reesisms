@@ -1,14 +1,19 @@
 <template>
-	<article>
+	<article :class="detailed ? 'detailed' : ''">
 		<p class="quote-text">{{ quote }}</p>
 		<p v-if="author" class="quote-author">Submitted by {{ author }}</p>
-		<div v-if="id" class="quote-buttons">
-			{{ /* TODO: details button graphic rather than text */ }}
+		<div v-if="id" class="action-bar">
+			<button>
+				<FontAwesomeIcon icon="heart"></FontAwesomeIcon>
+			</button>
+			<button>
+				<FontAwesomeIcon icon="bookmark"></FontAwesomeIcon>
+			</button>
 			<NuxtLink
 				:to="'/quotes/' + encodeURIComponent(id)"
 				class="quote-button-detail"
 			>
-				details
+				<FontAwesomeIcon icon="info"></FontAwesomeIcon>
 			</NuxtLink>
 		</div>
 	</article>
@@ -31,34 +36,51 @@ export default {
 			required: false,
 			default: "",
 		},
+		detailed: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
 	},
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 article {
 	border: 5px;
 	border-radius: 0.3em;
-	padding: 2em;
-	margin: 1em;
-	display: flex;
+	padding: 1em;
+	font-size: 16px;
 }
 
 .quote-text {
 	font-weight: bold;
-	font-size: large;
 }
 
 .quote-author {
-	font-size: small;
+	font-style: italic;
 }
 
-div.quote-buttons {
-	order: -1;
-	height: min-content;
+.action-bar {
 	display: flex;
-	flex-flow: column-reverse wrap;
-	justify-content: flex-end;
-	width: available;
+	flex-flow: row nowrap;
+	margin-top: 10px;
+}
+
+.detailed {
+	&.article {
+		font-size: 19px;
+	}
+
+	& > .quote-text {
+		font-size: 19px;
+	}
+
+	& > .action-bar {
+		margin-top: 0;
+		border-top: 1px solid #35495e;
+		border-bottom: 1px solid #35495e;
+		padding: 10px 0;
+	}
 }
 </style>
