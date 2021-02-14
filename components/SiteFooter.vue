@@ -6,14 +6,17 @@
 			otherwise stated.
 		</p>
 		<div class="links">
-			<a>RSS</a>
+			<!--suppress HtmlUnknownTarget -->
+			<a href="/api/feed">RSS</a>
 		</div>
 	</footer>
 </template>
 
 <style scoped>
-.links > :not(:last-child)::after {
-	content: "•";
-	padding: 0 5px;
+.links > a {
+	padding: 2px 5px;
+	border-left: solid 1px var(--theme-highlight);
+	border-right: solid 1px var(--theme-highlight);
+	color: var(--theme-highlight);
 }
 </style>
