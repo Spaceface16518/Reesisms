@@ -1,6 +1,6 @@
 <template>
 	<div class="quote-list">
-		<div v-for="quote in $data.quotes" :key="quote.id" class="quotes-list">
+		<div v-for="quote in quotes" :key="quote.id" class="quotes-list">
 			<Quote :id="quote.id" :author="quote.author" :quote="quote.quote" />
 		</div>
 	</div>

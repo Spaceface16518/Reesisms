@@ -92,7 +92,7 @@ body {
 
 		&.center-panel {
 			grid-column: 2;
-			grid-row-start: 1;
+			height: 100%;
 		}
 
 		&.input-panel {
