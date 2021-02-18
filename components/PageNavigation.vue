@@ -1,7 +1,7 @@
 <template>
 	<NuxtLink :aria-label="name" :to="page" class="page-navigation-button">
 		<FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
-		<span>{{ name }}</span>
+		<span class="page-navigation-button-label">{{ name }}</span>
 	</NuxtLink>
 </template>
 
@@ -26,18 +26,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/scss/variables";
+
 .page-navigation-button {
 	flex: 0 0 auto;
 	background: transparent;
-	display: block;
+	display: inline;
 	font-size: 16px;
-	padding: 15px;
+	padding: 10px;
 	text-decoration: none;
-	color: var(--theme-text);
+	color: white;
 
 	&.nuxt-link-active {
-		background: var(--theme-background);
-		color: var(--theme-highlight);
+		color: $highlight-color;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.page-navigation-button-label {
+		display: none;
 	}
 }
 </style>

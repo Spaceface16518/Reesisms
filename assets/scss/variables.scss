@@ -1,0 +1,17 @@
+$min-mid-screen: 900px;
+$min-wide-screen: 1190px;
+
+$base-color: #1f3324;
+$light-base-color: #3d6647;
+$primary-color: #5c996b;
+$secondary-color: #7acc8f;
+$highlight-color: #99ffb2;
+
+:root {
+  --base-color: $base-color;
+  --light-base-color: $light-base-color;
+  --primary-color: $primary-color;
+  --secondary-color: $secondary-color;
+  --highlight-color: $highlight-color;
+}
+

@@ -1,9 +1,12 @@
 <template>
 	<div class="container">
-		<aside class="panel input-panel">
+		<aside class="panel search-panel">
 			<SearchInput></SearchInput>
+		</aside>
+		<aside class="panel input-panel">
 			<QuoteForm></QuoteForm>
 		</aside>
+		<new-quote-button />
 		<main class="panel center-panel">
 			<Nuxt></Nuxt>
 		</main>
@@ -26,21 +29,7 @@
 </template>
 
 <style lang="scss">
-:root {
-	--light: #adefd1;
-	--dark: #00203f;
-	--theme-background: var(--light);
-	--theme-highlight: var(--light);
-	--theme-foreground: var(--light);
-	--theme-text: var(--dark);
-
-	@media screen and (prefers-color-scheme: dark) {
-		--theme-background: var(--dark);
-		--theme-highlight: var(--light);
-		--theme-foreground: darken(var(--light), 20%);
-		--theme-text: white;
-	}
-}
+@import "../assets/scss/variables.scss";
 
 html {
 	/* TODO: custom typography */
@@ -53,9 +42,10 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
-	background: var(--theme-background);
-	color: var(--theme-text);
+	background: $base-color;
+	color: white;
 }
+
 body {
 	margin: 0;
 }
@@ -63,52 +53,127 @@ body {
 .container {
 	padding: 0 10px;
 	min-height: 100vh;
+	@media screen and (min-width: 415px) {
+		margin-top: 10px;
+		min-height: calc(100vh - 10px);
+	}
 	width: min-content;
 	margin-left: auto;
 	margin-right: auto;
 
+	// Responsive grid layout
 	display: grid;
-	grid-template-columns: 285px minmax(min-content, 600px) 285px;
-	grid-column-gap: 10px;
-
-	@media screen and (max-width: 800px) {
-		grid-template-columns: 1fr;
-		grid-template-rows: min-content auto;
+	@media screen and (min-width: 415px) {
+		grid-column-gap: 10px;
+		grid-row-gap: 10px;
+	}
+	$main-col: minmax(min-content, 600px);
+	$secondary-col: 285px;
+	$small-row: 48px;
+	// small screens (like phones)
+	grid-template-columns: $main-col;
+	grid-template-rows: $small-row 1fr;
+	// medium-sized screens
+	@media screen and (min-width: $min-mid-screen) {
+		grid-template-columns: $secondary-col $main-col;
+		grid-template-rows: $small-row $small-row 1fr;
+	}
+	// full-sized (wide) screens
+	@media screen and (min-width: $min-wide-screen) {
+		grid-template-columns: $secondary-col $main-col $secondary-col;
 	}
 
 	align-content: space-between;
 	justify-content: center;
 
 	& > .panel {
-		height: 100%;
-		width: 100%;
+		background: $light-base-color;
+
+		height: available;
+		width: available;
 		padding: 0 10px;
 		overflow: hidden;
-		margin-top: 10px;
-		margin-bottom: 10px;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 
 		&.center-panel {
-			grid-column: 2;
 			height: 100%;
+
+			grid-column: 1;
+			grid-row: 2;
+			@media screen and (min-width: $min-mid-screen) {
+				grid-column: 2;
+				grid-row: 2 / span 2;
+			}
+			@media screen and (min-width: $min-wide-screen) {
+				grid-column: 2;
+				grid-row: 1 / span 3;
+			}
 		}
 
 		&.input-panel {
-			grid-column: 1;
+			height: min-content;
+
+			display: none;
+
+			@media screen and (min-width: $min-mid-screen) {
+				display: block;
+				grid-column: 1;
+				grid-row: 2;
+			}
 		}
 
-		&.navigational-panel {
-			height: calc(100% - 20px);
-			overflow-y: auto;
-			grid-column: 3;
+		&.search-panel {
+			height: min-content;
+			display: none;
+
+			@media screen and (min-width: $min-mid-screen) {
+				display: block;
+				grid-column: 1;
+				grid-row: 1;
+			}
+		}
+
+		&.navigation-panel {
+			position: sticky;
+			height: 48px;
+			overflow-y: hidden;
+			overflow-x: scroll;
+
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+
+			grid-column: 1;
+			grid-row: 1 / span 2;
+			@media screen and (min-width: $min-mid-screen) {
+				grid-column: 2;
+			}
+			@media screen and (min-width: $min-wide-screen) {
+				position: unset;
+				height: min-content;
+				overflow-y: auto;
+				flex-direction: column;
+				align-items: normal;
+
+				grid-column: 3;
+				grid-row-end: span 3;
+			}
 		}
 	}
 
 	footer {
-		margin: 10px 0;
-		height: min-content;
+		display: none;
+		@media screen and (min-width: $min-mid-screen) {
+			display: block;
+			margin: 10px 0;
+			height: min-content;
+
+			grid-column: 1;
+			grid-row: 3;
+			align-self: end;
+		}
 	}
 }
 </style>
