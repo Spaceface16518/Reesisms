@@ -87,8 +87,6 @@ body {
 	justify-content: center;
 
 	& > .panel {
-		background: $light-base-color;
-
 		height: available;
 		width: available;
 		padding: 0 10px;
@@ -98,6 +96,7 @@ body {
 		justify-content: flex-start;
 
 		&.center-panel {
+			background: $light-base-color;
 			height: 100%;
 
 			grid-column: 1;
