@@ -153,6 +153,7 @@ body {
 				position: unset;
 				height: min-content;
 				overflow-y: auto;
+				overflow-x: auto;
 				flex-direction: column;
 				align-items: normal;
 
