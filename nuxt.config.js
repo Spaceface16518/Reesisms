@@ -46,7 +46,7 @@ export default {
 
 	fontawesome: {
 		icons: {
-			solid: ["faBookmark", "faInfo", "faHeart", "faHome", "faList", "faPlus"],
+			solid: ["faInfo", "faHeart", "faHome", "faList", "faPlus"],
 		},
 	},
 };

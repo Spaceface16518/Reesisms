@@ -14,11 +14,6 @@
 			<PageNavigation icon="home" name="Home" page="/"></PageNavigation>
 			<PageNavigation icon="heart" name="Liked" page="/liked"></PageNavigation>
 			<PageNavigation
-				icon="bookmark"
-				name="Bookmarked"
-				page="/bookmarked"
-			></PageNavigation>
-			<PageNavigation
 				icon="list"
 				name="Categories"
 				page="/categories"
