@@ -11,6 +11,12 @@
 		<div class="links">
 			<!--suppress HtmlUnknownTarget -->
 			<a href="/api/feed">RSS</a>
+			<NuxtLink to="/license">License</NuxtLink>
+			<a
+				href="https://github.com/Spaceface16518/Reesisms"
+				referrerpolicy="origin"
+				>Source</a
+			>
 		</div>
 	</footer>
 </template>
@@ -28,8 +34,12 @@ footer {
 	justify-content: center;
 
 	& > a {
-		padding: 2px 5px;
-		border-left: solid 1px $highlight-color;
+		padding: 2px 8px;
+
+		&:first-child {
+			border-left: solid 1px $highlight-color;
+		}
+
 		border-right: solid 1px $highlight-color;
 		color: $highlight-color;
 	}
