@@ -27,7 +27,7 @@ export default {
 	height: 3.9375rem;
 	bottom: 1.3125rem;
 	right: 1.3125rem;
-	background: $primary-color;
+	background: $secondary-color;
 	color: white;
 	border-radius: 50%;
 	font-size: 21px;
