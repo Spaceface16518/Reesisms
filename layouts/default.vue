@@ -46,6 +46,11 @@ html {
 	color: white;
 }
 
+a {
+	color: $highlight-color;
+	text-decoration: none;
+}
+
 body {
 	margin: 0;
 }
@@ -87,8 +92,7 @@ body {
 	justify-content: center;
 
 	& > .panel {
-		height: available;
-		width: available;
+		width: 100%;
 		padding: 0 10px;
 		overflow: hidden;
 		display: flex;

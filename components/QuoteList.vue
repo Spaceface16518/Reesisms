@@ -17,8 +17,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "assets/scss/variables";
 .quote-list {
-	background: var(--theme-foreground);
+	background: $light-base-color;
 }
 </style>

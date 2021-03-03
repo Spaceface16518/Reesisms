@@ -24,9 +24,3 @@ export default {
 	fetchOnServer: false,
 };
 </script>
-
-<style>
-ul {
-	background: var(--theme-foreground);
-}
-</style>
