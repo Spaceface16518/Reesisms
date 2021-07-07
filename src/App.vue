@@ -1,5 +1,8 @@
 <template>
     <div id="app">
+				<aside>
+					<Announcement short="Reesisms is getting a major update!" long="Reesisms will be getting a new look and a lot of internal changes. Stay tuned!" />
+				</aside>
         <nav>
             <router-link to="/">Home</router-link>
             <router-link to="/submit">Submit A Quote</router-link>
@@ -9,9 +12,11 @@
 </template>
 
 <script>
+		import Announcement from '@/components/Announcement';
 
     export default {
         name: 'app',
+				components: {Announcement}
     }
 </script>
 
